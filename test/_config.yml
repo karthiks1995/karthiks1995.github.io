@@ -1,0 +1,14 @@
+# Site settings
+title: "This is a test"
+smalltalk: "To see if jekyll can load with slash"
+description:  "Technical blog of Zoomo"
+baseurl: #
+paginate: 5
+url: "www.gozoomo.com"
+twitter_username: "gozoomo"
+github_username: "youngmonk"
+facebook_username: "gozoomo"
+portfolio_url: 
+
+# Build settings
+markdown: kramdown

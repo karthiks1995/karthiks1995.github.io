@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Starting with Google Spreadsheet API and OAuth2</title>
+  <meta name="description" content="You might be working with huge databases on which you want to perform some heavy weighted queries. Repeating these queries will take a heavy toll  on the CPU...">
+
+  <link rel="canonical" href="www.gozoomo.com/getting-started-with-google-spreadheet-api-and-oauth2">
+  <!-- <link rel="alternate" type="application/rss+xml" title="Tech at Zoomo" href="www.gozoomo.com/feed.xml" /> -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ 
+
+	
+  <!--Added styles css-->	
+  <link rel="stylesheet" href="/css/normalize.css"/>
+   <link rel="stylesheet" href="/stylesheets/screen.css"/>
+
+    <!--Font awesome-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+   <!--modernizr-->
+   <script src="/js/modernizr.js"></script>
+   <script src="http://use.typekit.net/tnh1mql.js"></script>
+   <script>try{Typekit.load();}catch(e){}</script>
+	
+
+
+</head>
+
+
+  <body>
+  <!--[if lt IE 7]>
+      <strong>It seems your browser is quite a bit old, to get latest browser go to this link <a href="http://browsehappy.com">BROWSE HAPPY </a> And get the happy face</strong>
+  <![endif]-->
+
+  
+<!-- Start with the header -->
+<section class="header" id="header">
+
+
+
+    <a class="header__github" target="_blank" href="https://github.com/youngmonk"><i class="fa fa-github"></i><span class="xs-hidden">Our Github</span></a>
+
+    <!-- Main Head Title -->
+    <div class="header__content">    
+      <a href="http://www.gozoomo.com">
+        <img src="http://static.gozoomo.com/static/home/img/logo-zoomo-white.svg" alt="Zoomo - Your Personal Used Car Expert" title="Zoomo - Your Personal Used Car Expert" class="header__logo">
+      </a>
+      <h1 class="header__title"><a href="http://tech.gozoomo.com/">Tech at Zoomo</a></h1>
+      <p class="header__subtitle">The fountain of Zoomo tech team wisdom, coffee and code.</p>
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+
+
+          <!--start of the post title-->
+    <section class="single-post-title-main">
+        <h2>Starting with Google Spreadsheet API and OAuth2</h2>
+        
+    </section>
+<!--End of the post title-->
+
+<!--Start of the section post-->
+    <section class="post">
+       <p>
+          <p>You might be working with huge databases on which you want to perform some heavy weighted queries. Repeating these queries will take a heavy toll  on the CPU. You would want to store the queried database so as to avoid repetation of these queries. Using spreadsheets for storing the data would be one nice choice as it is easier for people not familiar with db to do a visual comparison.</p>
+
+<p>In this process of storing the data into a spreadsheet, adding a row to a spreadsheet is the basic step one has to do and this is not a cake walk for someone who’s not an expert because of the following reasons.</p>
+
+<ul>
+  <li>Basically you are supposed to use the Authentication API and Spreadsheet API of Google. Here the Authentication API is mavenised whereas the Spreadsheet API is not.</li>
+  <li>Once the authorization is done through one account, it wont ask you to authorise again. So it is not possible for you to edit a spreadsheet from another account.</li>
+</ul>
+
+<p>This simple example of adding a row demonstrates all the process involved and can be extended to perform the required task.To familiarise yourself with Clojure or Leiningen, you can use the links for the 
+<a href="http://www.moxleystratton.com/blog/2008/05/01/clojure-tutorial-for-the-non-lisp-programmer/">clojure</a> and <a href="https://github.com/technomancy/leiningen/blob/stable/doc/TUTORIAL.md">leiningen</a> tutorials.</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>In order to include the mavenised version of Spreadsheet API, you can include the following snippet in your project.clj if you are using clojure or pom.xml for java.
+<script src="https://gist.github.com/karthiks1995/f9ab9dc4099df62691ac.js"> </script>
+<script src="https://gist.github.com/karthiks1995/d884c60ad9b2d611099c.js"> </script></p>
+
+<h2 id="authentication">Authentication</h2>
+<p>Below is the code snippet for authorization. Execution of this code requests authorisation in the default browser. Successful authorisation creates .store directory in /home/user/ . Successful authorisation grants access to all the files accessible by the authorised account.</p>
+
+<script src="https://gist.github.com/karthiks1995/3e33bfc568c139d3823e.js"> </script>
+
+<script src="https://gist.github.com/karthiks1995/b77374c8e6f1fd850754.js"> </script>
+
+<p>The basic structure of a spreadsheet is like this:</p>
+
+<ul>
+  <li>A user has access to many <code>Spreadsheets</code></li>
+  <li>Each spreadsheet has many sheets under it which are called <code>Worksheets</code></li>
+  <li>Each Worksheet has many <code>Entries</code> which are nothin but rows</li>
+</ul>
+
+<p>Our objective is to get access to the last entry so as to add contents to it</p>
+
+<h2 id="getting-the-worksheet-and-adding-rows">Getting the Worksheet and adding rows</h2>
+
+<p>Now add the below provided snippet which contains the functions <code>get-ws</code> and <code>add-row</code> which can be invoked from any file.
+<script src="https://gist.github.com/karthiks1995/a35e47f4feed3e12f20e.js"> </script>
+<script src="https://gist.github.com/karthiks1995/4cb923c3220c0defe29e.js"> </script></p>
+
+<p><code>get-ws</code> takes two arguments. One is the URL of the spreadsheet and the other is the class of the sheet you are accessing. In this case its WorksheetFeed.This gets the list of all the entries.</p>
+
+<p><code>add-row</code> also takes two arguments. One is the URL for the list of the spreadsheet and the other is the data you want to enter.</p>
+
+<p>Note that the URL accepted by the the above mentioned functions is not the same as the URL of the spreadsheet in the browser. You have to modify it as shown below.</p>
+
+<p>This is the sample browser URL for the spreadsheet.<br />
+<em>https://docs.google.com/spreadsheets/d/1SpsUoJjXfrRlHkbuxY54Y6wAw-EBpQptF6gFAgTGFwU/edit#gid=0</em></p>
+
+<p>The get-ws URL should be modified as:
+<em>https://spreadsheets.google.com/feeds/worksheets/1SpsUoJjXfrRlHkbuxY54Y6wAw-EBpQptF6gFAgTGFwU/private/full</em></p>
+
+<p>The add-row URL should be modified as:
+<em>https://spreadsheets.google.com/feeds/list/1SpsUoJjXfrRlHkbuxY54Y6wAw-EBpQptF6gFAgTGFwU/od6/private/full</em></p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>Now let us use the above defined functions to add a row to the spreadsheet.
+Assume you have a spreadsheet whose first row has “Name” “Roll” “Rank”, which corresponds to names of first three columns and let the first row be filles as shown in the figure.</p>
+
+<p><img class="img-responsive img-post" src=" /img/Selection_001.png " /></p>
+
+<p>Now if you want to add another row to the spreadsheet use the above defined functions as shown in code snippet below.</p>
+
+<script src="https://gist.github.com/karthiks1995/27507482af2c20acba0e.js"> </script>
+
+<script src="https://gist.github.com/karthiks1995/2a14e7d15e8eb16a87bd.js"> </script>
+
+<p>Spreadsheet after adding the row.</p>
+
+<p><img class="img-responsive img-post" src=" /img/Selection_002.png " /></p>
+<figcaption>A screenshot from Google Sheets</figcaption>
+<p>Note that the second argument for add-row function should be of the form {“ColumnName1” “Data1”,”ColumnName2” “Data2”,…..so on} where ColumnName1,ColumnName2…. are the elements of the first row in the spreadsheet.</p>
+
+<h2 id="changing-the-authorised-account">Changing the authorised account</h2>
+
+<p>You might have noticed that once you have authorised it wont ask for authentication again. Once you authorise, a file called analytics is created in /home/user/.store/ . As long as this file is there , it wont ask authorisation. Therefore if you want to change the auhorised account, you have to delete the file and run the auth code.</p>
+
+<script src="https://gist.github.com/karthiks1995/ab5c84c3c917cb4db617.js"> </script>
+
+<h2 id="why-was-this-blog-written">Why was this blog written?</h2>
+<ul>
+  <li>For the past 2-3 years, google had not released the mavenised version of Spreadsheet API, and the link for the one suggested here was not easily available.</li>
+  <li>In order to edit spreadsheets authorised by different accounts, we have to make sure that the <code>home/user/.store/analytics</code> file is deleted or the authentication file for the new account shold be created in a separate folder. This is not explicitly stated anywhere in the OAuth2 documentation of google.</li>
+  <li>All the tutorials or blogs about Spreadsheet modify it by iterating over the spreadsheets which increases the time taken to complete the query. In this approach, the URL of the required worksheet and the Entry is calculated and appended (setValueLocal in add-row) which reduces the complexity drastically.</li>
+</ul>
+
+
+       </p>
+
+    </section>
+
+    <!--start of section author-->
+    <section class="single-author">
+        <div class="post-details">
+            
+            <p class="post-details__author">Written by Karthik</p>
+            <p class="post-details__date">Posted on May 26,2015</p>
+            <div class="categories">
+                <p>Categories:</p>
+                <ul>
+                
+                    <li><a>clojure</a></li>
+                
+                    <li><a>google-api</a></li>
+                
+                    <li><a>google-spreadsheet</a></li>
+                
+                    <li><a>oauth2</a></li>
+                
+                    <li><a>leiningen</a></li>
+                
+                    <li><a>maven</a></li>
+                   
+                </ul>
+            </div>
+
+          
+
+        </div>
+    </section>
+<!--End of section author-->
+<hr class="full-width">
+  <div class="col-xs-12 col-md-offset-2 col-md-8 comments">
+        <h2 class="comments__title">Have something to say?</h2>
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zoomo-tech'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+	
+
+   
+  </div>
+
+</div>
+<hr/>
+
+
+
+</section>
+
+
+
+
+    <section class="footer container">
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="http://www.gozoomo.com">
+          <img src="/img/zoomo-logo-grey.png" alt="Zoomo - Your Personal Used Car Expert" title="Zoomo - Your Personal Used Car Expert">
+        </a>
+        <a href="http://www.gozoomo.com/jobs.html" class="footer__company-name">
+          gozoomo.com
+        </a>
+      </div>
+    </div>
+
+    <div class="row social-links">
+
+        <div class="col-xs-12 text-center">
+            
+      <span>
+        <a class="header-link" href="https://github.com/youngmonk" target="_blank" title="Follow us on Github">
+            <i class="fa fa-github"></i>
+        </a>
+      </span>
+            
+
+
+            
+      <span>
+        <a class="header-link" href="https://twitter.com/gozoomo" target="_blank" title="Follow us on Twitter">
+            <i class="fa fa-twitter"></i>
+        </a>
+      </span>
+            
+
+            
+
+
+            
+      <span>
+        <a class="header-link" href="https://facebook.com/gozoomo"  target="_blank" title="Follow us on Facebook">
+            <i class="fa fa-facebook "></i>
+        </a>
+      </span>
+            
+        </div>
+
+    </div>
+
+ 
+      <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zoomo-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE ***/
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+
+</section>
+
+
+    </div>
+    <!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/jquery.js"><\/script>')</script>
+
+<!-- Add custom scripts here -->
+<!-- Bootstrap js -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<!-- Parallax js -->
+<script type="text/javascript" src="/js/jquery.localscroll-1.2.7-min.js" ></script>
+<script type="text/javascript" src="/js/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript" src="/js/jquery.scrollTo-1.4.2-min.js"></script>
+<script type="text/javascript" src="/js/snippet.js"></script>
+<!-- /end of parallax js -->
+
+
+
+<!-- Add your google analytics here -->
+<!-- Change the XXXXXXX section in your site id -->
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');  ga('create', 'UA-63441150-1', 'auto');
+ ga('send', 'pageview');
+</script> 
+
+	
+
+
+
+  </body>
+
+</html>

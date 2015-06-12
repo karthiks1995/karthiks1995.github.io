@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Zoomo Logo Spinner Deconstructed</title>
+  <meta name="description" content="Making your logo a loading spinner isn’t new. It makes for good branding and allows you a nice excuse to flash your company’s logo. Every once in a while, we...">
+
+  <link rel="canonical" href="www.gozoomo.com/zoomo-logo-spinner-deconstructed">
+  <!-- <link rel="alternate" type="application/rss+xml" title="Tech at Zoomo" href="www.gozoomo.com/feed.xml" /> -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ 
+
+	
+  <!--Added styles css-->	
+  <link rel="stylesheet" href="/css/normalize.css"/>
+   <link rel="stylesheet" href="/stylesheets/screen.css"/>
+
+    <!--Font awesome-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+   <!--modernizr-->
+   <script src="/js/modernizr.js"></script>
+   <script src="http://use.typekit.net/tnh1mql.js"></script>
+   <script>try{Typekit.load();}catch(e){}</script>
+	
+
+
+</head>
+
+
+  <body>
+  <!--[if lt IE 7]>
+      <strong>It seems your browser is quite a bit old, to get latest browser go to this link <a href="http://browsehappy.com">BROWSE HAPPY </a> And get the happy face</strong>
+  <![endif]-->
+
+  
+<!-- Start with the header -->
+<section class="header" id="header">
+
+
+
+    <a class="header__github" target="_blank" href="https://github.com/youngmonk"><i class="fa fa-github"></i><span class="xs-hidden">Our Github</span></a>
+
+    <!-- Main Head Title -->
+    <div class="header__content">    
+      <a href="http://www.gozoomo.com">
+        <img src="http://static.gozoomo.com/static/home/img/logo-zoomo-white.svg" alt="Zoomo - Your Personal Used Car Expert" title="Zoomo - Your Personal Used Car Expert" class="header__logo">
+      </a>
+      <h1 class="header__title"><a href="http://tech.gozoomo.com/">Tech at Zoomo</a></h1>
+      <p class="header__subtitle">The fountain of Zoomo tech team wisdom, coffee and code.</p>
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+
+
+          <!--start of the post title-->
+    <section class="single-post-title-main">
+        <h2>The Zoomo Logo Spinner Deconstructed</h2>
+        
+    </section>
+<!--End of the post title-->
+
+<!--Start of the section post-->
+    <section class="post">
+       <p>
+          <p>Making your logo a loading spinner isn’t new. It makes for good branding and allows you a nice excuse to flash your company’s logo. Every once in a while, we come across an example that conveys the extraordinary amount of care and detail that goes into making a good spinner great. One such example is the spinner that Slack uses for their web application. So, we thought we’d make something with ours.</p>
+
+<p><img src="/img/zoomo-spinner.gif" alt="Zoomo spinner" /></p>
+
+<p><strong>We recommend keeping the CodePen example open while reading the tutorial.</strong> <a href="http://codepen.io/zoomodesign/pen/BNLxYO" target="_blank"><b>Click here to edit in CodePen.</b></a></p>
+
+<p>This is our logo.</p>
+
+<p><img src="/img/zoomo-logo.jpg" alt="Zoomo logo" /></p>
+
+<p>It’s simple, and it has immense recall value. If you look closely, you’ll see that the logo isn’t comprised of perfectly right-angled triangles, but is slightly skewed to the right. This made matters a little tricky.</p>
+
+<h2 id="some-basics-first">Some basics first</h2>
+
+<p>For those who know how to construct triangles in CSS, feel free to skip this particular section.</p>
+
+<p>Let’s begin.</p>
+
+<p>In CSS, we create a triangle by manipulating the borders of a div with <code>width: 0</code> and <code>height: 0</code>.</p>
+
+<p>Really basic stuff now. Here’s a div with a height and width of 200px, and a background colour, coral.</p>
+
+<p><img src="/img/csstri1.png" alt="Making a CSS Triangle" /></p>
+
+<p>Let’s apply a border of 12px.</p>
+
+<p><img src="/img/csstri2.png" alt="Making a CSS Triangle" /></p>
+
+<p>And watch what happens once we we make every border a different colour.</p>
+
+<p><img src="/img/csstri3.png" alt="Making a CSS Triangle" /></p>
+
+<p>We’re going to leverage those diagonal separations in the corners. Let’s make the div sizeless by making height and width 0, and increase border width to 100px.</p>
+
+<p><img src="/img/csstri4.png" alt="Making a CSS Triangle" /></p>
+
+<p>And finally, make every border (apart from the bottom one) transparent in colour.</p>
+
+<p><img src="/img/csstri5.png" alt="Making a CSS Triangle" /></p>
+
+<p>Boom. A triangle.</p>
+
+<h2 id="recreating-the-logo">Recreating the logo</h2>
+
+<p><em>[Note: You mostly wouldn’t want to recreate the Zoomo logo identically. So instead of going into the details of the <strong>exact</strong> dimensions of the logo and how they were recreated, I’ll go over the techniques we used to make this happen.]</em></p>
+
+<p>In case you haven’t figured out already, the Zoomo logo has two obtuse angled triangles. Constructing a triangle with altitude <em>x</em> and base <em>2x</em> was a piece of cake. The Zoomo triangles aren’t so simple though. Let’s reimagine each Zoomo triangle as a CSS triangle, like this.</p>
+
+<p><img src="/img/logo1.png" alt="Making the Zoomo Spinner" /></p>
+
+<p>There are a few ways you can go about this. One way is to directly compare this with the logo and adjust your border-widths accordingly. Another way is to measure the dimensions of the triangle, and mathematically derive the altitude of that triangle. The altitude will be the border-width. The latter is generally more time consuming but more accurate.</p>
+
+<p>Next, rotate the div with <code>transform: rotate()</code> to the point that the base is perfectly horizontal.</p>
+
+<p><img src="/img/logo2.png" alt="Making the Zoomo Spinner" /></p>
+
+<p>And we’ve made the first Zoomo triangle. The second Zoomo triangle is the same thing, but inverted. Constructing this should be pretty obvious from the first one.</p>
+
+<p>Position the two fins apart so that they mimic the logo. We chose to make a wrapper div, and gave it a <code>position: relative</code>. For the triangles, we chose one div and styled their <code>before</code> and <code>after</code> pseudo elements for nice, clean markup (maybe we’ll make the whole thing in one div someday). Of course, you can choose to do this with two different divs. Position the two triangles with <code>position: absolute</code>.</p>
+
+<h2 id="creating-the-collapse">Creating the collapse</h2>
+
+<p>There are broadly two states in the animation.</p>
+
+<ul>
+  <li>
+    <p><strong>Exploded</strong> - triangles are apart, and are obtuse angled.<br />
+<img src="/img/spinner-exploded.png" alt="Zoomo Spinner exploded" /></p>
+  </li>
+  <li>
+    <p><strong>Collapsed</strong> - triangles are together, and are right angled. They form a perfect rectangle.<br />
+<img src="/img/spinner-collapsed.png" alt="Zoomo spinner collapsed" /></p>
+  </li>
+</ul>
+
+<p>To reduce the angle to 90deg, all you need to do is reduce the border-top-width. You can obtain the exact number by some basic trigonometry, or you can do some trial-and-error — whatever you’re comfortable with. The magic of this lies in the fact that the base is unaffected. The angle is <em>directly</em> controlled by the <code>border-top-width</code> only and nothing else.</p>
+
+<p><img src="/img/logo3.png" alt="Making the Zoomo Spinner" /></p>
+
+<h2 id="bringing-it-together">Bringing it together</h2>
+
+<p>First, remove any rotation applied to the individual triangles. Rotate the parent element by the amount necessary to make both triangle bases horizontal (in my case it was <em>35.9deg</em>). We’ll now leave this untouched and work only on the triangles.</p>
+
+<p>Let’s settle on a “default” state. We found it easy to make the “collapsed” state the default one and start with that.</p>
+
+<p>There are a few stages in our animation for the triangles. Throughout these stages, the only properties that change are <code>border-top-width</code> (<code>border-bottom-width</code> for the other triangle) and <code>transform: translate(x, y)</code></p>
+
+<p><em>[Note: avoid animating properties such as <code>top</code>, <code>left</code>, etc. or <code>margin</code> and <code>padding</code> and most others to the extent that’s possible. These are not as performant as <code>transform</code> or <code>opacity</code>. <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/" target="_blank">More information here</a>]</em></p>
+
+<p>These are the stages for animating the first triangle. We need to use CSS keyframes for these and basic knowledge of keyframes is required for understanding this.</p>
+
+<ul>
+  <li><strong>0% to 28%</strong> - increasing <code>border-top-width</code> and shifting the position of the triangle to the exploded state (adjust the translate property’s x and y offsets for this)</li>
+  <li><strong>28% to 56%</strong> - maintaining this state while the parent wrapper element rotate animation occurs</li>
+  <li><strong>56% to 84%</strong> - returning to the collapsed state by reversing the first step</li>
+  <li><strong>84% to 100%</strong> - maintaining the collapsed state for some time</li>
+</ul>
+
+<p>We’ll leave you to the second one as it’s exactly the inverse of the first.</p>
+
+<h2 id="the-spin">The spin</h2>
+
+<p>This part’s pretty easy. The spinning animation works indepently from, but in sync with, the collapsing-exploding one. While we apply the collapsing-exploding animation to the individually to each triangle, the spin animation is applied to the parent wrapper element. All we need to do is spin the div in the state when the two triangles are maintaining their exploded state (28% to 56%). The keyframes can be broken down like this:</p>
+
+<ul>
+  <li><strong>0% to 28%</strong> - the wrapper rotation is maintained (this won’t be 0, as we mentioned earlier, as we’ve rotated the parent to make the triangle bases horizontal)</li>
+  <li><strong>28% to 56%</strong> - spin the wrapper by 180deg</li>
+  <li><strong>56% to 100%</strong> - maintain the wrapper rotation</li>
+</ul>
+
+<p>We don’t really need to return to the original state at 0% as spinning the logo by 180deg is identical to the state at 0deg.</p>
+
+<h2 id="those-final-touches">Those final touches</h2>
+
+<p>It’s imperative that the three animations (one for each triangle, and one for the wrapper) are in sync. For easings, we went with the usual <code>ease</code> but you can always experiment with other easings with <code>cubic-bezier</code> or get creative at <a href="http://cubic-bezier.com/" target="_blank">cubic-bezier.com</a>. For us, <code>ease</code> works out just fine.</p>
+
+<p>Armed with these techniques, we hope you’ll get cracking on something even better! If you do make something, feel free to post it in the comments. We’d love to have a look.</p>
+
+<p>Thanks for reading.</p>
+
+       </p>
+
+    </section>
+
+    <!--start of section author-->
+    <section class="single-author">
+        <div class="post-details">
+            
+            <p class="post-details__author">Written by Ananth</p>
+            <p class="post-details__date">Posted on May 31,2015</p>
+            <div class="categories">
+                <p>Categories:</p>
+                <ul>
+                
+                    <li><a>css3</a></li>
+                
+                    <li><a>animation</a></li>
+                
+                    <li><a>front-end</a></li>
+                
+                    <li><a>design</a></li>
+                
+                    <li><a>spinner</a></li>
+                   
+                </ul>
+            </div>
+
+          
+
+        </div>
+    </section>
+<!--End of section author-->
+<hr class="full-width">
+  <div class="col-xs-12 col-md-offset-2 col-md-8 comments">
+        <h2 class="comments__title">Have something to say?</h2>
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zoomo-tech'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+	
+
+   
+  </div>
+
+</div>
+<hr/>
+
+
+
+</section>
+
+
+
+
+    <section class="footer container">
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="http://www.gozoomo.com">
+          <img src="/img/zoomo-logo-grey.png" alt="Zoomo - Your Personal Used Car Expert" title="Zoomo - Your Personal Used Car Expert">
+        </a>
+        <a href="http://www.gozoomo.com/jobs.html" class="footer__company-name">
+          gozoomo.com
+        </a>
+      </div>
+    </div>
+
+    <div class="row social-links">
+
+        <div class="col-xs-12 text-center">
+            
+      <span>
+        <a class="header-link" href="https://github.com/youngmonk" target="_blank" title="Follow us on Github">
+            <i class="fa fa-github"></i>
+        </a>
+      </span>
+            
+
+
+            
+      <span>
+        <a class="header-link" href="https://twitter.com/gozoomo" target="_blank" title="Follow us on Twitter">
+            <i class="fa fa-twitter"></i>
+        </a>
+      </span>
+            
+
+            
+
+
+            
+      <span>
+        <a class="header-link" href="https://facebook.com/gozoomo"  target="_blank" title="Follow us on Facebook">
+            <i class="fa fa-facebook "></i>
+        </a>
+      </span>
+            
+        </div>
+
+    </div>
+
+ 
+      <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zoomo-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE ***/
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+
+</section>
+
+
+    </div>
+    <!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/jquery.js"><\/script>')</script>
+
+<!-- Add custom scripts here -->
+<!-- Bootstrap js -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<!-- Parallax js -->
+<script type="text/javascript" src="/js/jquery.localscroll-1.2.7-min.js" ></script>
+<script type="text/javascript" src="/js/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript" src="/js/jquery.scrollTo-1.4.2-min.js"></script>
+<script type="text/javascript" src="/js/snippet.js"></script>
+<!-- /end of parallax js -->
+
+
+
+<!-- Add your google analytics here -->
+<!-- Change the XXXXXXX section in your site id -->
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');  ga('create', 'UA-63441150-1', 'auto');
+ ga('send', 'pageview');
+</script> 
+
+	
+
+
+
+  </body>
+
+</html>
